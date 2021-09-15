@@ -1,13 +1,13 @@
 import React from 'react';
 import './App.css';
-import { dummyTweets } from './static/dummyData';
+import { dummyNotice, dummyTweets } from './static/dummyData';
 // ! 위 코드는 수정하지 않습니다.
-console.log(dummyTweets); // 개발 단계에서 사용하는 더미 데이터입니다.
+console.log(dummyTweets) // 개발 단계에서 사용하는 더미 데이터입니다.
 
 const Sidebar = () => {
   return (
     <section className="sidebar">
-      {<i className="far fa-comment-dots"></i>}
+      <i className="far fa-comment-dots"></i>
     </section>
   );
 };
@@ -33,32 +33,24 @@ const Tweets = () => {
   return (
     <ul className="tweets">
       {dummyTweets.map((tweet) => {
+
         return (
           <li className="tweet" key={tweet.id}>
-            <div className="tweet__profile">{<img src={tweet.picture} />}</div>
-            <div className="tweet__content">
-              {tweet.username === 'parkhacker' ? (
-                <div
-                  className="tweet__userInfo"
-                  style={{ backgroundColor: 'rgb(235, 229, 249)' }}
-                >
-                  <span className="tweet__username--purple">
-                  {tweet.username}
-                  </span>
-                </div>
-              ) : (
-                <div className="tweet__userInfo">
-                  <span className="tweet__username">
-                    {tweet.username}
-                  </span>
-                  </div>
-              )}
-              <span className="tweet__createdAt">
-              {tweet.createdAt}
-              </span>
+            <div className="tweet__profile">
+              <img src={tweet.picture}/>
             </div>
-            <div className="tweet__message">
-            {tweet.content}
+            <div className="tweet__content">
+              <div className="tweet__userInfo">
+                {
+                  (tweet.username === 'parkhacker') ?
+                  <span className="tweet__username tweet__username--purple">{tweet.username}</span> :
+                  <span className="tweet__username">{tweet.username}</span>
+                }
+                <span className="tweet__createdAt">{tweet.createdAt}
+                </span>
+                <div className="tweet__message">{tweet.content}</div>
+              </div>
+              TODO : 트윗 메세지가 있어야 합니다.
             </div>
           </li>
         );
